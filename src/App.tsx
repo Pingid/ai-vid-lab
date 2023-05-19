@@ -1,16 +1,12 @@
 import { Router, useNavigate, useSearchParams } from "@solidjs/router";
-import { For, createEffect, createResource, onMount } from "solid-js";
-import { initFlowbite } from "flowbite";
+import { For, createEffect, createResource } from "solid-js";
 
-import { Gallery } from "./gallery";
-import { useDir } from "./hooks";
-import { File } from "./filed";
-import { trpc } from "./data";
-
-import "flowbite";
-import { CommandModal, ModalButton } from "./command";
-
-onMount(() => initFlowbite());
+import { CommandModal, ModalButton } from "./components/shell/modal";
+import { Gallery } from "./components/gallery";
+import { useDir } from "./components/hooks";
+import { File } from "./components/filed";
+import { trpc } from "./components/data";
+import { Cwd } from "./components";
 
 export const App = () => (
   <Router>
@@ -35,7 +31,7 @@ export const Routes = () => {
 
   return (
     <div class="grid [grid-template:3rem_1fr_/_16rem_1fr] w-full h-full min-h-0 min-w-0">
-      <div class="col-span-2 row-start-1 px-4 py-2 border-b flex items-center">
+      <div class="col-span-2 row-start-1 px-4 py-2 border-b flex items-center gap-3">
         <h4 class="">
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-red-500">
             Video AI
@@ -43,18 +39,19 @@ export const Routes = () => {
           for you...
         </h4>
         <input
-          class="ml-3 h-full py-2 px-2 focus:bg-black/5 focus:outline-none w-full flex-1"
+          class="h-full py-2 px-2 focus:bg-black/5 focus:outline-none w-full flex-1"
           value={dir()}
-          onInput={(e) => nav(e.target.value)}
+          onInput={(e) => nav(e.currentTarget.value)}
           placeholder="/user/content..."
         />
+        <Cwd />
         <ModalButton />
       </div>
       <div class="row-start-2 border-r overflow-y-auto pb-12">
         <input
           class="py-2 px-2 focus:bg-black/5 bg-white border-b focus:outline-none w-full flex-1 sticky top-0"
           value={params.filter || ""}
-          onInput={(e) => setparams({ filter: e.target.value })}
+          onInput={(e) => setparams({ filter: e.currentTarget.value })}
           placeholder=""
         />
         <ul class="space-y-2 font-medium p-2">

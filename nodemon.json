@@ -1,0 +1,5 @@
+{
+  "watch": ["server", "scripts"],
+  "ext": "ts,mjs,js,json,graphql",
+  "exec": "esrun ./scripts/server.ts"
+}

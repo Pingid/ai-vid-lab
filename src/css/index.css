@@ -1,4 +1,4 @@
-@import './font.css';
+@import "./font.css";
 
 @tailwind base;
 @tailwind components;
@@ -52,7 +52,7 @@
 
   body {
     background-color: var(--bg-color);
-    font-family: 'GeneralSans-Variable', 'helvetica', sans-serif;
+    font-family: "GeneralSans-Variable", "helvetica", sans-serif;
     color: var(--fg-color);
   }
 
@@ -86,8 +86,19 @@
 
   .text-outline {
     color: var(--fg-color);
-    -webkit-text-fill-color: var(--bg-color); /* Will override color (regardless of order) */
+    -webkit-text-fill-color: var(
+      --bg-color
+    ); /* Will override color (regardless of order) */
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: var(--fg-color);
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
   }
 }
